@@ -10,12 +10,12 @@ let changeSwiper = () => {
     } else {
         mySwiper = new Swiper('.swiper-container', {
             slidesPerView: 'auto',
-                       watchOverflow: true,      
+            // spaceBetween: 16,               
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
             },              
-        });  
+        });        
         swiperOn = 1;
         // console.log(swiperOn);
     }
@@ -23,6 +23,7 @@ let changeSwiper = () => {
 changeSwiper();
 window.addEventListener('resize', () => {
         changeSwiper(); 
+        hide();
     });
 
 // ================
@@ -47,10 +48,7 @@ changeBtn.addEventListener('click',  () => {
        show();
     } else {
        hide();
-    }    
+    }  
     
 });
 
-window.addEventListener('resize', () => {
-    hide();
-    });
