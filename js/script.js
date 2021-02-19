@@ -20,11 +20,6 @@ let changeSwiper = () => {
         // console.log(swiperOn);
     }
 }
-changeSwiper();
-window.addEventListener('resize', () => {
-        changeSwiper(); 
-        hide();
-    });
 
 // ================
 
@@ -43,6 +38,15 @@ let hide = () => {
     sliderWrapper.classList.remove('show')
 }
 
+// ================
+
+changeSwiper();
+
+window.addEventListener('resize', () => {
+    changeSwiper(); 
+    hide();
+});
+
 changeBtn.addEventListener('click',  () => {
     if (changeBtn.textContent == 'Показать все') {
        show();
@@ -51,4 +55,6 @@ changeBtn.addEventListener('click',  () => {
     }  
     
 });
+
+
 
