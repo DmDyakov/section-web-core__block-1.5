@@ -1,32 +1,29 @@
-
-let mySwiper = 'not init';
-function initSwiper() {
-    if (document.documentElement.clientWidth < 768 
-        && mySwiper == 'not init') {        
+let mySwiper;
+let swiperOn;
+ 
+let changeSwiper = () => {        
+    if (document.documentElement.clientWidth >= 768 && swiperOn == 1) {
+        swiperOn = 0
+        // console.log(swiperOn);
+        mySwiper.destroy();
+       
+    } else {
         mySwiper = new Swiper('.swiper-container', {
             slidesPerView: 'auto',
-            spaceBetween: 16,
-            watchOverflow: true,      
+                       watchOverflow: true,      
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
-            },             
-              
-        });        
-        
-    } else if (document.documentElement.clientWidth >= 768 
-        && mySwiper != 'not init') {             
-        mySwiper.destroy();            
-        mySwiper = 'not init';
-             
-    }        
+            },              
+        });  
+        swiperOn = 1;
+        // console.log(swiperOn);
+    }
 }
-   
-initSwiper();
-
+changeSwiper();
 window.addEventListener('resize', () => {
-    initSwiper(); 
-});
+        changeSwiper(); 
+    });
 
 // ================
 
@@ -35,13 +32,25 @@ changeBtn.textContent = 'Показать все';
 
 let sliderWrapper = document.querySelector('.slider__wrapper');
 
+let show = () => {
+    changeBtn.textContent = 'Скрыть'; 
+    sliderWrapper.classList.add('show');
+}
+
+let hide = () => {
+    changeBtn.textContent = 'Показать все';
+    sliderWrapper.classList.remove('show')
+}
+
 changeBtn.addEventListener('click',  () => {
     if (changeBtn.textContent == 'Показать все') {
-       changeBtn.textContent = 'Скрыть'; 
-       sliderWrapper.classList.add('show');
+       show();
     } else {
-        changeBtn.textContent = 'Показать все';
-        sliderWrapper.classList.remove('show')
+       hide();
     }    
     
 });
+
+window.addEventListener('resize', () => {
+    hide();
+    });
